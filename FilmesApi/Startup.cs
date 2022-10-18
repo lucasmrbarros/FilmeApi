@@ -1,4 +1,5 @@
 using FilmesApi.Data;
+using FilmesApi.Services;
 using FilmesAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,9 @@ namespace FilmesAPI
             services.AddDbContext<AppDbContext>(opts => opts.UseMySQL(Configuration.GetConnectionString("CinemaConnection")));
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<CinemaServices, CinemaServices>();
+            services.AddScoped<FilmeService, FilmeService>();
+            services.AddScoped<SessaoServices, SessaoServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
